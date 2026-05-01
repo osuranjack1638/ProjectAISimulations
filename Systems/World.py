@@ -7,6 +7,12 @@ class World:
         self.entities = []
         self.systems = []
 
+    def addEntity(self, entity):
+        self.entities.append(entity)
+
+    def addSystem(self, system):
+        self.systems.append(system)
+
     def tick(self):
         for system in self.systems:
             for entity in self.entities:

@@ -1,8 +1,6 @@
-import random
-
 class NameComponent:
-    def __init__(self, seed=None):
-        self.rng = random.Random(seed)
+    def __init__(self, world):
+        self.world = world
         self.generated = set()
 
         self.prefixes = ["Al", "Ar", "Bel", "Cal", "Dar", "El", "Fen", "Gal", "Hal", "Ian", "Jar", "Kal", "Lor", "Mar", "Nor", "Or", "Per", "Quin", "Rin", "Sar", "Tal", "Ul", "Val", "Wen", "Xan", "Yor", "Zan"]
@@ -11,9 +9,9 @@ class NameComponent:
 
 
     def generateName(self):
-        name = self.rng.choice(self.prefixes) + self.rng.choice(self.middles) + self.rng.choice(self.suffixes)
+        name = self.world.rng.choice(self.prefixes) + self.rng.choice(self.middles) + self.rng.choice(self.suffixes)
         while name in self.generated:
-            name += str(self.rng.randint(0, 9))
+            name += str(self.world.rng.randint(0, 9))
 
         self.generated.add(name)
         return name

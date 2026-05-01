@@ -9,7 +9,7 @@ class NameComponent:
 
 
     def generateName(self):
-        name = self.world.rng.choice(self.prefixes) + self.rng.choice(self.middles) + self.rng.choice(self.suffixes)
+        name = self.world.rng.choice(self.prefixes) + self.world.rng.choice(self.middles) + self.world.rng.choice(self.suffixes)
         while name in self.generated:
             name += str(self.world.rng.randint(0, 9))
 

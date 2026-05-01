@@ -26,9 +26,12 @@ def createEntity(nComp, pComp, sComp, mComp, tComp):
     return entity
 
 
-def stateFn(s): #s = state
+def stateFn(s, entity): #s = state
     if s.energy <= 0:
         s.alive = False
+
+    if not s.alive:
+        world.removeEntity(entity)
 
 def movementFn(p, m): #p = pos, m = movement/speed
     p.x += world.rng.randint(-1, 1) * m.speed
@@ -37,8 +40,11 @@ def movementFn(p, m): #p = pos, m = movement/speed
 def typeFn(t, s): #t = type, s = state
     if t.type == "human":
         s.energy -= 1
+        if s.energy >= 100:
+            s.energy -= 50
+            createEntity(NameComponent(world), PositionComponent(0, 0), StateComponent(), MovementComponent(), TypeComponent("human"))
 
-def interactionFn(s, oT, oS): #s = state, oT = other type, oS = other state
+def interactionFn(t, s, oT, oS): #t = type, s = state, oT = other type, oS = other state
     if oT == "food":
         s.energy += 5
 
@@ -61,7 +67,7 @@ for i in range(3):
 for i in range(10):
     createEntity(NameComponent(world), PositionComponent(0, 0), StateComponent(), MovementComponent(), TypeComponent("human"))
 
-for tick in range(10):
+for tick in range(100):
     print(f"\nTick {tick+1}")
     world.tick()
 

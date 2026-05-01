@@ -10,6 +10,9 @@ class World:
     def addEntity(self, entity):
         self.entities.append(entity)
 
+    def removeEntity(self, entity):
+        self.entities.remove(entity)
+
     def addSystem(self, system):
         self.systems.append(system)
 

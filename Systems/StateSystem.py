@@ -6,4 +6,4 @@ class StateSystem:
         state = entity.components.get("state")
         if not state: return
 
-        self.fn(state)
+        self.fn(state, entity)

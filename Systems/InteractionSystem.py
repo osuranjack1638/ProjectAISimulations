@@ -20,4 +20,4 @@ class InteractionSystem:
             if abs(position.x - otherPosition.x) <= 1 and abs(position.y - otherPosition.y) <= 1:
                 if not otherState.alive: continue
 
-                self.fn(state, otherType, otherState)
+                self.fn(t, state, otherType, otherState)
